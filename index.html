@@ -3,6 +3,7 @@
     <head>
         <title> To-Do App</title>
         <link rel="stylesheet" href="style.css"></link>
+        <link rel="manifest" href="manifest.json"></link>
     </head>
     <body>
         <h1>My To-Do App</h1>
@@ -10,5 +11,10 @@
         <button onclick="addTask()">Add</button>
         <ul id="taskList"></ul>
         <script src="script.js"></script>
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js');
+            }
+        </script>
     </body>
 </html>
