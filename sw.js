@@ -1,21 +1,23 @@
-self.addEventListener("install", function(e) {
+const CACHE_NAME = "todo-v1";
+
+self.addEventListener("install", e => {
   e.waitUntil(
-    caches.open("todo-cache").then(function(cache) {
+    caches.open(CACHE_NAME).then(cache => {
       return cache.addAll([
-        "/todo-app/",
-        "/todo-app/index.html",
-        "/todo-app/style.css",
-        "/todo-app/script.js",
-        "/todo-app/icon.png"
+        "./",
+        "./index.html",
+        "./style.css",
+        "./script.js",
+        "./icon.png"
       ]);
     })
   );
 });
 
-self.addEventListener("fetch", function(e) {
+self.addEventListener("fetch", e => {
   e.respondWith(
-    caches.match(e.request).then(function(response) {
-      return response || fetch(e.request);
+    caches.match(e.request).then(res => {
+      return res || fetch(e.request);
     })
   );
 });
