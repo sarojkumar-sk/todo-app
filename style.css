@@ -48,17 +48,40 @@ ul {
   padding: 0;
 }
 
+
 /* Note card */
 li {
   background: white;
   margin-top: 10px;
-  padding: 10px;
+  padding: 12px;
   border-radius: 10px;
   word-wrap: break-word;
+  position: relative;
+}
+
+/* Buttons container */
+.actions {
+  margin-top: 8px;
+}
+
+/* Small buttons */
+.actions button {
+  padding: 5px 10px;
+  font-size: 12px;
+  margin-right: 5px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Edit button */
+.edit-btn {
+  background: #4a4ae6;
+  color: white;
 }
 
 /* Delete button */
-li button {
-  margin-top: 5px;
+.delete-btn {
   background: red;
+  color: white;
 }
