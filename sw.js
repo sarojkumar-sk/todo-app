@@ -1,4 +1,4 @@
-const CACHE_NAME = "todo-v1";
+const CACHE_NAME = "todo-v2";
 
 self.addEventListener("install", e => {
   e.waitUntil(
@@ -20,4 +20,17 @@ self.addEventListener("fetch", e => {
       return res || fetch(e.request);
     })
   );
+});
+self.addEventListener("activate", e => {
+    e.waitUntil(
+        caches.keys().then(cacheNames => {
+            return Promise.all(
+                cacheNames.map(cache => {
+                    if (cache !== CACHE_NAME) {
+                        return caches.delete(cache);
+                    }
+                })
+            );
+        })
+    );
 });
