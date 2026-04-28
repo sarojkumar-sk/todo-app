@@ -1,66 +1,67 @@
-// 🔹 Global array
-let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+// 🔹 Load data
+let notes = JSON.parse(localStorage.getItem("notes")) || [];
 
-// 🔹 Page load hote hi render
+// 🔹 Page load
 window.onload = function () {
-    renderTasks();
+    renderNotes();
+
+    // auto-save while typing
+    document.getElementById("noteInput").addEventListener("input", autoSaveDraft);
+
+    // load draft
+    let draft = localStorage.getItem("draft");
+    if (draft) {
+        document.getElementById("noteInput").value = draft;
+    }
 };
 
-// 🔹 Add Task
-function addTask() {
-    let input = document.getElementById("taskInput");
-    let category = document.getElementById("category").value;
+// 🔹 Save note (button click)
+function saveNote() {
+    let input = document.getElementById("noteInput");
 
     if (input.value.trim() === "") return;
 
-    tasks.push({
-        text: input.value,
-        category: category
-    });
+    notes.push(input.value);
 
     input.value = "";
+    localStorage.removeItem("draft");
 
-    saveTasks();
-    renderTasks();
+    saveToLocal();
+    renderNotes();
 }
 
-// 🔹 Render Tasks (screen par dikhana)
-function renderTasks() {
-    let list = document.getElementById("taskList");
+// 🔹 Auto save draft
+function autoSaveDraft() {
+    let value = document.getElementById("noteInput").value;
+    localStorage.setItem("draft", value);
+}
+
+// 🔹 Render notes
+function renderNotes() {
+    let list = document.getElementById("notesList");
     list.innerHTML = "";
 
-    tasks.forEach((task, index) => {
+    notes.forEach((note, index) => {
         let li = document.createElement("li");
 
         li.innerHTML = `
-            ${task.text} (${task.category})
-            <button onclick="editTask(${index})">Edit</button>
-            <button onclick="deleteTask(${index})">Delete</button>
+            ${note}
+            <br>
+            <button onclick="deleteNote(${index})">Delete</button>
         `;
 
         list.appendChild(li);
     });
 }
 
-// 🔹 Delete Task
-function deleteTask(index) {
-    tasks.splice(index, 1);
-    saveTasks();
-    renderTasks();
+// 🔹 Delete note
+function deleteNote(index) {
+    notes.splice(index, 1);
+    saveToLocal();
+    renderNotes();
 }
 
-// 🔹 Edit Task
-function editTask(index) {
-    let newText = prompt("Edit task:", tasks[index].text);
-
-    if (newText !== null && newText.trim() !== "") {
-        tasks[index].text = newText;
-        saveTasks();
-        renderTasks();
-    }
-}
-
-// 🔹 Save in LocalStorage
-function saveTasks() {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+// 🔹 Save to localStorage
+function saveToLocal() {
+    localStorage.setItem("notes", JSON.stringify(notes));
 }
