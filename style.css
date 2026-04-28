@@ -38,6 +38,10 @@ button {
   cursor: pointer;
 }
 
+select {
+  padding: 10px;
+}
+
 li {
   list-style: none;
   background: white;
@@ -45,7 +49,25 @@ li {
   padding: 10px;
   display: flex;
   justify-content: space-between;
-  animation: fade 0.5s ease;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.tag {
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.work { background: #dbeafe; }
+.study { background: #dcfce7; }
+.personal { background: #fef3c7; }
+
+.actions button {
+  margin-left: 5px;
+  padding: 5px;
+  font-size: 12px;
 }
 
 @keyframes fade {
