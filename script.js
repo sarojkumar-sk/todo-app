@@ -68,16 +68,22 @@ function addTask() {
     let input = document.getElementById("taskInput");
     let task = input.value;
 
-    if (task === "") {
-        alert("Please enter a task");
-        return;
-    }
-
-    createTask(task);      // task create
-    updateLocalStorage();  // 🔥 save
-
+    if (task === "") return;
+    let li = document.createElement("li");
+    li.innerHTML = '
+        ${task}
+    <span>
+        <button 
+    onclick="this.parentElement.parentElement.remove()">X</button>
+        </span>';
+    document.getElementById("taskList").appendChild(li);
     input.value = "";
 }
+
+// Dark Mode Toggle
+document.getElementById("darkBtn").onclick = function () {
+    document.body.classList.toggle("dark");
+};
 
 // 💾 Local Storage update
 function updateLocalStorage() {
