@@ -1,23 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title> To-Do App</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="manifest" href="./manifest.json">
-        <meta name="theme-color" content="#0000ff">
-    </head>
-    <body>
-        <h1>My To-Do App</h1>
-        <input type="text" id="taskInput" placeholder="Enter task">
-        <button onclick="addTask()">Add</button>
-        <ul id="taskList"></ul>
-        <script src="script.js"></script>
-        <script>
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('./sw.js');
-                });
-            }
-        </script>
-    </body>
+<head>
+  <title>To-Do App</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#4f46e5">
+</head>
+
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+  <h2>📝 Todo</h2>
+  <button id="darkBtn">🌙</button>
+</header>
+
+<!-- Main -->
+<div class="container">
+  <h1>My To-Do App</h1>
+
+  <div class="input-box">
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <button onclick="addTask()">Add</button>
+  </div>
+
+  <ul id="taskList"></ul>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>Made by You 🚀</p>
+</footer>
+
+<script src="script.js"></script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js');
+}
+</script>
+
+</body>
 </html>
