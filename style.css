@@ -1,91 +1,64 @@
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   background: #f4f4f4;
-  transition: 0.3s;
 }
 
+/* Navbar */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px;
-  background: #4f46e5;
+  background: #4a4ae6;
   color: white;
-}
-
-.container {
-  max-width: 400px;
-  margin: auto;
-  padding: 20px;
+  padding: 15px;
   text-align: center;
 }
 
-.input-box {
-  display: flex;
-  gap: 10px;
+/* Container */
+.container {
+  padding: 15px;
 }
 
-input {
-  flex: 1;
+/* Textarea */
+textarea {
+  width: 100%;
+  height: 150px;
+  font-size: 16px;
   padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+  resize: none;
+  box-sizing: border-box;
 }
 
+/* Button */
 button {
-  padding: 10px;
-  background: #4f46e5;
+  margin-top: 10px;
+  width: 100%;
+  padding: 12px;
+  background: #4a4ae6;
   color: white;
   border: none;
-  cursor: pointer;
+  border-radius: 10px;
+  font-size: 16px;
 }
 
-select {
-  padding: 10px;
-}
-
-li {
+/* Notes list */
+ul {
   list-style: none;
+  padding: 0;
+}
+
+/* Note card */
+li {
   background: white;
   margin-top: 10px;
   padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 8px;
+  border-radius: 10px;
+  word-wrap: break-word;
 }
 
-.tag {
-  font-size: 12px;
-  padding: 3px 8px;
-  border-radius: 5px;
-  margin-left: 5px;
-}
-
-.work { background: #dbeafe; }
-.study { background: #dcfce7; }
-.personal { background: #fef3c7; }
-
-.actions button {
-  margin-left: 5px;
-  padding: 5px;
-  font-size: 12px;
-}
-
-@keyframes fade {
-  from {opacity: 0; transform: translateY(10px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-footer {
-  text-align: center;
-  margin-top: 20px;
-}
-
-/* Dark Mode */
-.dark {
-  background: #111;
-  color: white;
-}
-
-.dark li {
-  background: #222;
+/* Delete button */
+li button {
+  margin-top: 5px;
+  background: red;
 }
