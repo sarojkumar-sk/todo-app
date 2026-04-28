@@ -1,21 +1,17 @@
-// 🔹 Load data
 let notes = JSON.parse(localStorage.getItem("notes")) || [];
 
-// 🔹 Page load
 window.onload = function () {
     renderNotes();
 
-    // auto-save while typing
     document.getElementById("noteInput").addEventListener("input", autoSaveDraft);
 
-    // load draft
     let draft = localStorage.getItem("draft");
     if (draft) {
         document.getElementById("noteInput").value = draft;
     }
 };
 
-// 🔹 Save note (button click)
+// Save note
 function saveNote() {
     let input = document.getElementById("noteInput");
 
@@ -30,13 +26,13 @@ function saveNote() {
     renderNotes();
 }
 
-// 🔹 Auto save draft
+// Auto save
 function autoSaveDraft() {
     let value = document.getElementById("noteInput").value;
     localStorage.setItem("draft", value);
 }
 
-// 🔹 Render notes
+// Render
 function renderNotes() {
     let list = document.getElementById("notesList");
     list.innerHTML = "";
@@ -45,23 +41,36 @@ function renderNotes() {
         let li = document.createElement("li");
 
         li.innerHTML = `
-            ${note}
-            <br>
-            <button onclick="deleteNote(${index})">Delete</button>
+            <div>${note}</div>
+            <div class="actions">
+                <button class="edit-btn" onclick="editNote(${index})">Edit</button>
+                <button class="delete-btn" onclick="deleteNote(${index})">Delete</button>
+            </div>
         `;
 
         list.appendChild(li);
     });
 }
 
-// 🔹 Delete note
+// Delete
 function deleteNote(index) {
     notes.splice(index, 1);
     saveToLocal();
     renderNotes();
 }
 
-// 🔹 Save to localStorage
+// ✅ Edit (main feature)
+function editNote(index) {
+    let newText = prompt("Edit your note:", notes[index]);
+
+    if (newText !== null && newText.trim() !== "") {
+        notes[index] = newText;
+        saveToLocal();
+        renderNotes();
+    }
+}
+
+// Save
 function saveToLocal() {
     localStorage.setItem("notes", JSON.stringify(notes));
 }
