@@ -1,4 +1,4 @@
-const CACHE_NAME = "todo-v2";
+const CACHE_NAME = "notes-v3";
 
 self.addEventListener("install", e => {
   e.waitUntil(
