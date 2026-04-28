@@ -1,11 +1,10 @@
 {
-  "name": "To-Do App",
-  "short_name": "Todo",
+  "name": "Notes App",
+  "short_name": "Notes",
   "start_url": "./index.html",
-  "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#0000ff",
+  "theme_color": "#4a4ae6",
   "icons": [
     {
       "src": "./icon.png",
